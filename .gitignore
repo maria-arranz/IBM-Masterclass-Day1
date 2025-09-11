@@ -219,3 +219,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Custom Solution Files and Folders
+/Solutions
+*-kiko.py
