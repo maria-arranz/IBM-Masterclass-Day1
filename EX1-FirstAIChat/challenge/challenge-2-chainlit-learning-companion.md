@@ -1,141 +1,144 @@
-# 🎯 Challenge 2: AI-Powered Learning Companion with Chainlit
+# 🎯 Challenge 2: Simple Chainlit Chat with User Memory
 
 ## Objective
-Create an intelligent learning companion using Chainlit that adapts to different learning styles and provides interactive educational experiences with multimedia support.
+Transform the basic Chainlit example into a chat that remembers the user's name and shows a simple welcome/goodbye experience.
 
 ## What You'll Learn
-- Advanced Chainlit features and UI components
-- Dynamic conversation flow management
-- File upload and processing capabilities
-- Session state management across complex interactions
-- Educational AI application design patterns
+- Chainlit session management basics
+- Simple user state storage
+- Chainlit event handlers (start, message, end)
+- Basic personalization in web chat interfaces
 
 ## Challenge Description
-Based on the example `ex1-s2-chainlit.py`, create an AI Learning Companion that:
+Based on the example `ex1-s2-chainlit.py`, modify the code to create a Chainlit chat that:
 
-1. **Identifies the user's learning style** through an interactive quiz
-2. **Adapts teaching methods** based on the identified learning style
-3. **Supports multiple content types** (text, images, documents)
-4. **Tracks learning progress** and provides personalized recommendations
-5. **Creates interactive learning sessions** with quizzes and exercises
-
-## Learning Styles to Support
-Your AI should be able to adapt to these learning styles:
-- **Visual Learners**: Use diagrams, charts, visual explanations
-- **Auditory Learners**: Provide step-by-step verbal explanations
-- **Kinesthetic Learners**: Suggest hands-on exercises and practical examples
-- **Reading/Writing Learners**: Offer detailed text-based materials and note-taking
+1. **Asks for the user's name** when the chat starts
+2. **Remembers the name** throughout the conversation
+3. **Uses the name** in responses and system prompts
+4. **Shows a personalized goodbye** when the chat ends
 
 ## Technical Requirements
 
-### Core Features (All Levels)
-- [ ] Interactive learning style assessment (5-7 questions)
-- [ ] Personalized teaching approach based on assessment results
-- [ ] Session memory to remember user's learning style and progress
-- [ ] Clean, intuitive Chainlit interface
+### Basic Level (10-15 minutes) ✅ MAIN GOAL
+- [ ] Ask for user's name in the `@cl.on_chat_start` function
+- [ ] Store the name in `cl.user_session`
+- [ ] Use the stored name in the system prompt
+- [ ] Personalize responses with the user's name
+- [ ] Show a goodbye message with the user's name
 
-### Basic Features (Beginner Level)
-- [ ] Simple learning style quiz with basic questions
-- [ ] Different response formats for each learning style
-- [ ] Progress tracking using session variables
-- [ ] At least 3 different subject topics to teach
+### Advanced Level (Extra 5 minutes for fast finishers) 🌟 BONUS
+- [ ] Count the number of messages sent by the user
+- [ ] Add a simple `/info` command that shows user info
+- [ ] Show message count in the goodbye
 
-### Advanced Features (Intermediate Level)
-- [ ] File upload capability for students to ask questions about documents
-- [ ] Interactive elements using Chainlit's UI components (buttons, select boxes)
-- [ ] Knowledge assessment through mini-quizzes
-- [ ] Learning progress visualization
-- [ ] Recommendation system for next learning topics
-
-### Expert Features (Advanced Level)
-- [ ] Image analysis capability (students can upload diagrams/screenshots for help)
-- [ ] Adaptive difficulty system that adjusts based on performance
-- [ ] Learning path generation with prerequisite mapping
-- [ ] Export learning summary and progress reports
-- [ ] Multi-language support for international learners
-- [ ] Integration with external learning APIs or databases
-
-## Learning Style Assessment Questions (Examples)
-Design thoughtful questions that help identify learning preferences:
-
-1. "When learning something new, I prefer to..."
-2. "I remember information best when..."
-3. "When given instructions, I..."
-4. "My ideal study environment is..."
-5. "When solving problems, I usually..."
-
-## Interactive Elements to Implement
-Think about how to make learning engaging:
-
-- **Progress Bars**: Show learning progress
-- **Interactive Quizzes**: Test understanding with instant feedback
-- **Recommendation Cards**: Suggest next topics or resources
-- **File Upload Areas**: For document analysis
-- **Settings Panel**: Let users adjust preferences
-
-## Getting Started Code Structure
+## Getting Started Hints (Basic Level)
 
 ```python
-# Learning style data structure
-learning_styles = {
-    "visual": {
-        "description": "You learn best through visual aids and spatial understanding",
-        "teaching_approach": "I'll use diagrams, charts, and visual explanations",
-        "example_subjects": ["Mathematics with graphs", "Science with diagrams", "History with timelines"]
-    },
-    "auditory": {
-        "description": "You learn best through listening and verbal explanations",
-        "teaching_approach": "I'll provide step-by-step verbal explanations and discussions",
-        "example_subjects": ["Language learning", "Music theory", "Storytelling"]
-    },
-    # Add more styles...
-}
+# Key changes to make in your Chainlit app:
 
-# Session state management
 @cl.on_chat_start
 async def start():
-    # Initialize learning session
-    cl.user_session.set("learning_style", None)
-    cl.user_session.set("learning_progress", {})
-    cl.user_session.set("assessment_completed", False)
+    """Ask for user's name and store it"""
+    # Send welcome message and ask for name
+    await cl.Message(
+        content="🤖 Hello! I'm your AI assistant. What's your name?",
+        author="Assistant"
+    ).send()
     
-    # Start with learning style assessment
-    await start_learning_assessment()
+    # Initialize session variables
+    cl.user_session.set("user_name", None)
+    cl.user_session.set("waiting_for_name", True)
+
+@cl.on_message
+async def main(message: cl.Message):
+    """Handle messages - check if we need the name first"""
+    waiting_for_name = cl.user_session.get("waiting_for_name", False)
+    
+    if waiting_for_name:
+        # Store the name and send confirmation
+        user_name = message.content.strip()
+        cl.user_session.set("user_name", user_name)
+        cl.user_session.set("waiting_for_name", False)
+        
+        await cl.Message(
+            content=f"Nice to meet you, {user_name}! How can I help you today?",
+            author="Assistant"
+        ).send()
+        return
+    
+    # Get stored name for regular chat
+    user_name = cl.user_session.get("user_name", "friend")
+    
+    # Build personalized system prompt
+    system_message = f"You are a helpful assistant talking to {user_name}. Keep answers friendly and concise."
+    
+    # Your existing Azure OpenAI code here...
+    messages = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": message.content}
+    ]
+    
+    # ... rest of your response handling
 ```
 
-## Evaluation Criteria
-- **User Experience**: Is the learning experience engaging and intuitive?
-- **Personalization**: Does the AI effectively adapt to different learning styles?
-- **Functionality**: Do all interactive elements work smoothly?
-- **Educational Value**: Is the content pedagogically sound?
-- **Code Quality**: Is the code well-organized and maintainable?
-- **Innovation**: Have you implemented creative features that enhance learning?
+## Getting Started Hints (Advanced Level)
 
-## Bonus Challenges (Think Outside the Box!)
-- Create a "Study Buddy" mode where two users can learn together
-- Implement a spaced repetition system for long-term retention
-- Add gamification elements (points, achievements, leaderboards)
-- Create subject-specific learning modules with expert knowledge
-- Build a teacher dashboard to monitor student progress
+```python
+# Add these for bonus features:
+
+# In on_chat_start, also initialize:
+cl.user_session.set("message_count", 0)
+
+# In on_message, increment counter:
+message_count = cl.user_session.get("message_count", 0) + 1
+cl.user_session.set("message_count", message_count)
+
+# Add /info command handling:
+if message.content.strip().lower() == "/info":
+    user_name = cl.user_session.get("user_name", "Unknown")
+    message_count = cl.user_session.get("message_count", 0)
+    
+    await cl.Message(
+        content=f"📊 User: {user_name} | Messages sent: {message_count}",
+        author="System"
+    ).send()
+    return
+
+@cl.on_chat_end
+async def end():
+    """Show personalized goodbye with stats"""
+    user_name = cl.user_session.get("user_name", "friend")
+    message_count = cl.user_session.get("message_count", 0)
+    
+    print(f"Chat ended - User: {user_name}, Messages: {message_count}")
+```
+
+## Key Changes from Original Example
+1. **Ask for name** in `on_chat_start`
+2. **Store name** in session using `cl.user_session.set()`
+3. **Check if waiting for name** before processing regular messages
+4. **Personalize system prompt** with stored name
+5. **Add goodbye logic** in `on_chat_end`
+
+## Success Criteria
+- ✅ Chat asks for user's name at start
+- ✅ Responses are personalized with the user's name
+- ✅ Name is remembered throughout the conversation
+- ✅ Goodbye message includes the user's name
+- ✅ Chat works smoothly in the web interface
+
+## Time Estimation
+- **Basic Level**: 10-15 minutes
+- **With Bonus Features**: 15-20 minutes
+
+## How to Test
+1. Save your file as `ex1-ch2-YOURNAME.py`
+2. Run: `chainlit run ex1-ch2-YOURNAME.py`
+3. Open the web interface (usually http://localhost:8000)
+4. Test the name flow and personalization
 
 ## Deliverables
-1. Main Chainlit application file (`learning_companion.py`)
-2. Updated `chainlit.md` with your app's description
-3. README with setup and usage instructions
-4. (Optional) Sample learning materials or test files
-5. (Optional) Demo video showing different learning styles in action
+1. Modified Chainlit file (`ex1-ch2-YOURNAME.py`)
+2. Quick test in the web interface!
 
-## Additional Resources
-- [Chainlit Documentation](https://docs.chainlit.io/)
-- [Learning Styles Theory](https://en.wikipedia.org/wiki/Learning_styles)
-- [Educational Technology Best Practices](https://www.edutopia.org/technology-integration)
-- [Chainlit UI Elements Guide](https://docs.chainlit.io/concepts/chat-ui)
-
-## Success Tips
-1. **Start Simple**: Begin with the learning style assessment, then build complexity
-2. **User Testing**: Test with different people to ensure it works for various learning styles
-3. **Clear Feedback**: Provide clear visual and textual feedback for user actions
-4. **Error Handling**: Handle edge cases gracefully (invalid uploads, incomplete assessments)
-5. **Engaging Content**: Make the learning experience fun and interactive!
-
-Ready to revolutionize online learning? Let's build something amazing! 🚀📚✨
+This shows you the power of session management in web-based AI chats! 🚀
