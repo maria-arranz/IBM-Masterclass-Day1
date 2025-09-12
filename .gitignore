@@ -223,5 +223,3 @@ __marimo__/
 # Custom Solution Files and Folders
 /Solutions/
 *-kiko.py
-chainlit.md
-.chainlit/
