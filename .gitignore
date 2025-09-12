@@ -221,5 +221,16 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Custom Solution Files and Folders
-/Solutions/
+# Ignore all Solutions folders anywhere in the project
+**/Solutions/
+Solutions/
+
+# Ignore all files ending with -kiko.py (personal solutions)
+**/*-kiko.py
 *-kiko.py
+
+# Ignore any file that contains "solution" in the name (case insensitive)
+**/*solution*.py
+**/*Solution*.py
+*solution*.py
+*Solution*.py
