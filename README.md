@@ -16,10 +16,9 @@ This repository contains hands-on exercises for building AI agents using Azure O
 - Agent creation and configuration
 - Basic agent interactions
 
-### [EX3: AgentWithAISearch](./EX3-AgentWithAISearch/)
-**Topic:** Empower your agent with Tools: AI Search
-- Integrate Azure AI Search
-- Enable agents to search and retrieve information
+### [EX3: AgentWithTools](./EX3-AgentWithAISearch/)
+**Topic:** Empower your agent with Tools. Discover the different tools. 
+- Integrate your first tool innto your agent. 
 - Tool integration patterns
 
 ### [EX4: AgentWithMCP](./EX4-AgentWithMCP/)
@@ -56,3 +55,4 @@ Each exercise folder contains:
 - Troubleshooting guides
 
 Navigate to each exercise folder to begin the hands-on activities.
+
