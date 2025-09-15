@@ -9,7 +9,7 @@
 # ---------------------------------------------------------------------
 import os
 from azure.ai.projects import AIProjectClient
-from azure.identity import ClientSecretCredential, DefaultAzureCredential
+from azure.identity import DefaultAzureCredential
 from azure.ai.agents.models import ListSortOrder
 from dotenv import load_dotenv
 
@@ -34,27 +34,25 @@ azure_foundry_project_endpoint = os.getenv("AI_FOUNDRY_ENDPOINT")
 azure_foundry_key = os.getenv("AI_FOUNDRY_API_KEY")
 azure_foundry_deployment = os.getenv("AI_FOUNDRY_DEPLOYMENT_NAME")
 
-# 2. Authentication Setup using Azure Service Principal
+# 2. Authentication Setup using DefaultAzureCredential
 # ---------------------------------------------------------------------
-# Azure AI Foundry uses Azure Active Directory (Entra ID) for authentication.
-# ClientSecretCredential is used for service-to-service authentication:
+# DefaultAzureCredential automatically discovers and uses the best available credential:
+#   1. Environment variables (AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+#   2. Managed Identity (for Azure-hosted applications)
+#   3. Visual Studio Code authentication
+#   4. Azure CLI authentication (`az login`)
+#   5. Interactive browser authentication (fallback)
 #
-# REQUIRED CREDENTIALS:
-# - tenant_id: Your Azure AD tenant identifier
-# - client_id: Application (client) ID of your registered app
-# - client_secret: Secret value of your registered app
+# This credential type is ideal for:
+#   - Local development environments
+#   - Seamless transition from dev to production
+#   - Azure-hosted applications with Managed Identity
+#   - Simplified authentication without managing secrets
 #
-# This authentication method is more secure than API keys and provides:
-#   - Fine-grained access control through Azure RBAC
-#   - Audit trails for security compliance
-#   - Token-based authentication with automatic renewal
-#   - Integration with Azure security policies
+# No explicit credential object needed - DefaultAzureCredential is used directly
+# in the AIProjectClient constructor.
 # ---------------------------------------------------------------------
-varCredential = ClientSecretCredential(
-    tenant_id=os.getenv("AZURE_TENANT_ID"),
-    client_id=os.getenv("AZURE_CLIENT_ID"),
-    client_secret=os.getenv("AZURE_CLIENT_SECRET"),
-)
+
 
 # 3. AI Project Client Setup
 # ---------------------------------------------------------------------
@@ -73,7 +71,7 @@ varCredential = ClientSecretCredential(
 # ---------------------------------------------------------------------
 project = AIProjectClient(
     endpoint=azure_foundry_project_endpoint,
-    credential=varCredential
+    credential=DefaultAzureCredential()
 )
 
 # 4. Agent Creation

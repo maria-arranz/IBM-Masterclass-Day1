@@ -20,6 +20,19 @@ azure_foundry_project_endpoint = os.getenv("AI_FOUNDRY_ENDPOINT")
 azure_foundry_key = os.getenv("AI_FOUNDRY_API_KEY")
 azure_foundry_deployment = os.getenv("AI_FOUNDRY_DEPLOYMENT_NAME")
 
+# 2. Authentication Setup using DefaultAzureCredential
+# ---------------------------------------------------------------------
+# DefaultAzureCredential automatically discovers and uses the best available credential:
+#   1. Environment variables (AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET)
+#   2. Managed Identity (for Azure-hosted applications)  
+#   3. Visual Studio Code authentication
+#   4. Azure CLI authentication (`az login`)
+#   5. Interactive browser authentication (fallback)
+#
+# Perfect for development environments where you're already authenticated
+# via Azure CLI or VS Code. No need to manage secrets locally.
+# ---------------------------------------------------------------------
+
 # 3. AI Project Client Setup
 # ---------------------------------------------------------------------
 project = AIProjectClient(

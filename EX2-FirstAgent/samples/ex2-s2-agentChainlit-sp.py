@@ -22,6 +22,21 @@ azure_foundry_deployment = os.getenv("AI_FOUNDRY_DEPLOYMENT_NAME")
 
 # 2. Authentication Setup using Azure Service Principal
 # ---------------------------------------------------------------------
+# Azure AI Foundry uses Azure Active Directory (Entra ID) for authentication.
+# ClientSecretCredential is used for service-to-service authentication:
+#
+# REQUIRED CREDENTIALS:
+# - tenant_id: Your Azure AD tenant identifier  
+# - client_id: Application (client) ID of your registered app
+# - client_secret: Secret value of your registered app
+#
+# This authentication method is ideal for:
+#   - Production environments and CI/CD pipelines
+#   - Service-to-service authentication
+#   - Fine-grained access control through Azure RBAC
+#   - Audit trails and security compliance
+#   - Scenarios requiring explicit credential management
+# ---------------------------------------------------------------------
 varCredential = ClientSecretCredential(
     tenant_id=os.getenv("AZURE_TENANT_ID"),
     client_id=os.getenv("AZURE_CLIENT_ID"),
