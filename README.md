@@ -190,7 +190,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone <repository-url>
+git clone https://github.com/frdeange/IBM-Masterclass-Day1.git
 cd "IBM - Masterclass Day 1"
 
 # 2. Install dependencies
