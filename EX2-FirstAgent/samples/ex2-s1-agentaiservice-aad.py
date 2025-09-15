@@ -9,7 +9,7 @@
 # ---------------------------------------------------------------------
 import os
 from azure.ai.projects import AIProjectClient
-from azure.identity import ClientSecretCredential
+from azure.identity import ClientSecretCredential, DefaultAzureCredential
 from azure.ai.agents.models import ListSortOrder
 from dotenv import load_dotenv
 

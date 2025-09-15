@@ -64,7 +64,7 @@ Based on the examples in this folder (`ex2-s1-agentaiservice.py` and `ex2-s2-age
 
 ### 🥇 **Basic Level (10-15 minutes)** ✅ MAIN GOAL
 
-<div style="background: #d4edda; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; margin: 10px 0;">
+<div style="background: #b710f9ff; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; margin: 10px 0;">
 
 **Perfect for learning domain-specific AI agent development!**
 
@@ -79,7 +79,7 @@ Based on the examples in this folder (`ex2-s1-agentaiservice.py` and `ex2-s2-age
 
 ### 🌟 **Advanced Level (Extra 5 minutes for fast finishers)** 🎖️ BONUS
 
-<div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 10px 0;">
+<div style="background: #715806ff; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 10px 0;">
 
 **For those who want to build a more sophisticated travel assistant!**
 
@@ -212,7 +212,7 @@ cl.user_session.set("question_count", question_count)
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff;">
+<div style="background: #042e58ff; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff;">
 
 **🎯 Specialized Agent**
 - Travel-focused system instructions
@@ -220,7 +220,7 @@ cl.user_session.set("question_count", question_count)
 
 </div>
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745;">
+<div style="background: #0e7205ff; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745;">
 
 **📍 Destination Context**
 - Ask for travel destination
@@ -228,7 +228,7 @@ cl.user_session.set("question_count", question_count)
 
 </div>
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #dc3545;">
+<div style="background: #710202ff; padding: 15px; border-radius: 8px; border-left: 4px solid #dc3545;">
 
 **🎨 Travel Theme**
 - Travel emojis and terminology
@@ -236,7 +236,7 @@ cl.user_session.set("question_count", question_count)
 
 </div>
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+<div style="background: #585b03ff; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
 
 **💬 Enhanced UX**
 - Welcome tips and guidance
@@ -250,7 +250,7 @@ cl.user_session.set("question_count", question_count)
 
 ## ✅ **Success Criteria**
 
-<div style="background: #d1ecf1; padding: 20px; border-radius: 10px; border-left: 4px solid #0c5460;">
+<div style="background: #109bb3ff; padding: 20px; border-radius: 10px; border-left: 4px solid #0c5460;">
 
 **Your travel companion should achieve all of these:**
 

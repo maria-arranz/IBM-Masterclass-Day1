@@ -28,7 +28,7 @@
 
 </div>
 
-<div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; border-radius: 10px; color: white;">
+<div style="background: linear-gradient(135deg, #b141bdff 0%, #f5576c 100%); padding: 20px; border-radius: 10px; color: white;">
 
 ### 🤖 **Intelligent AI Agents**
 - Specialized domain agents (travel, assistant)
@@ -37,7 +37,7 @@
 
 </div>
 
-<div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 20px; border-radius: 10px; color: white;">
+<div style="background: linear-gradient(135deg, #033560ff 0%, #00f2fe 100%); padding: 20px; border-radius: 10px; color: white;">
 
 ### 🛠️ **Powerful Tool Integration**
 - Search capabilities with AI Search
@@ -46,7 +46,7 @@
 
 </div>
 
-<div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); padding: 20px; border-radius: 10px; color: white;">
+<div style="background: linear-gradient(135deg, #05582177 0%, #38f9d7 100%); padding: 20px; border-radius: 10px; color: white;">
 
 ### 🎼 **Agent Orchestration**
 - Multi-agent coordination
@@ -64,7 +64,7 @@
 ### 🎯 **EX1: FirstAIChat** → *Build Your Foundation*
 **🕒 Duration:** 30 minutes | **📊 Difficulty:** Beginner
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; margin: 10px 0;">
+<div style="background: #024e0cff; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745; margin: 10px 0;">
 
 **Create Your First AI Chat Service with Azure OpenAI**
 
@@ -83,7 +83,7 @@
 ### 🤖 **EX2: FirstAgent** → *Enter the Agent World*
 **🕒 Duration:** 30 minutes | **📊 Difficulty:** Beginner to Intermediate
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff; margin: 10px 0;">
+<div style="background: #0452a0ff; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff; margin: 10px 0;">
 
 **Create Your First Intelligent Agent with Azure AI Foundry**
 
@@ -101,7 +101,7 @@
 ### 🔧 **EX3: AgentWithTools** → *Empower with Tools*
 **🕒 Duration:** 45 minutes | **📊 Difficulty:** Intermediate
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 10px 0;">
+<div style="background: #555907ff; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107; margin: 10px 0;">
 
 **Enhance Your Agent with Powerful Search Tools**
 
@@ -115,7 +115,7 @@
 ### 🧠 **EX4: AgentWithMCP** → *Advanced Intelligence*
 **🕒 Duration:** 45 minutes | **📊 Difficulty:** Intermediate to Advanced
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #dc3545; margin: 10px 0;">
+<div style="background: #6d0606ff; padding: 15px; border-radius: 8px; border-left: 4px solid #dc3545; margin: 10px 0;">
 
 **Supercharge with Model Context Protocol (MCP)**
 
@@ -130,7 +130,7 @@
 ### 🎼 **EX5: AgentOrchestrationService** → *Coordinate Multiple Agents*
 **🕒 Duration:** 60 minutes | **📊 Difficulty:** Advanced
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #6f42c1; margin: 10px 0;">
+<div style="background: #35025dff; padding: 15px; border-radius: 8px; border-left: 4px solid #6f42c1; margin: 10px 0;">
 
 **Master Multi-Agent Coordination with AI Agent Service**
 
@@ -145,7 +145,7 @@
 ### ⚡ **EX6: AgentOrchestrationSemanticKernel** → *Enterprise Orchestration*
 **🕒 Duration:** 60 minutes | **📊 Difficulty:** Advanced
 
-<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #e83e8c; margin: 10px 0;">
+<div style="background: #600252ff; padding: 15px; border-radius: 8px; border-left: 4px solid #e83e8c; margin: 10px 0;">
 
 **Build Enterprise-Scale Solutions with Semantic Kernel**
 
@@ -270,7 +270,7 @@ pip install -r requirements.txt
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
 
-<div style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+<div style="background: #043d76ff; padding: 15px; border-radius: 8px;">
 
 ### 📚 **Documentation**
 - Detailed README in each exercise
@@ -279,7 +279,7 @@ pip install -r requirements.txt
 
 </div>
 
-<div style="background: #f0fff4; padding: 15px; border-radius: 8px;">
+<div style="background: #037421ff; padding: 15px; border-radius: 8px;">
 
 ### 🏆 **Challenges**
 - Step-by-step guided exercises
@@ -288,7 +288,7 @@ pip install -r requirements.txt
 
 </div>
 
-<div style="background: #fff8e1; padding: 15px; border-radius: 8px;">
+<div style="background: #8a6b02ff; padding: 15px; border-radius: 8px;">
 
 ### 🛠️ **Troubleshooting**
 - Common issues and solutions
@@ -297,7 +297,7 @@ pip install -r requirements.txt
 
 </div>
 
-<div style="background: #fce4ec; padding: 15px; border-radius: 8px;">
+<div style="background: #80042dff; padding: 15px; border-radius: 8px;">
 
 ### 🌐 **External Resources**
 - [Azure AI Foundry Docs](https://docs.microsoft.com/azure/ai-foundry/)
