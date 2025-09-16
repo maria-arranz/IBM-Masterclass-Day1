@@ -1,0 +1,611 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Industrial Inventory Management API",
+        "description": "API for managing spare parts and components inventory in manufacturing facilities",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://ibm-aiclass-apim.azure-api.net/inventory"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Health check endpoint",
+                "description": "Health check endpoint",
+                "operationId": "root__get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/inventory": {
+            "get": {
+                "summary": "Get all inventory items",
+                "description": "Retrieve all items in the inventory with their current stock levels",
+                "operationId": "get_all_inventory_inventory_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get All Inventory Inventory Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InventoryItem"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "item_id": "string",
+                                        "name": "string",
+                                        "category": "string",
+                                        "stock_quantity": 0,
+                                        "location": "string",
+                                        "min_stock_level": 0,
+                                        "unit_price": 0,
+                                        "supplier": "string",
+                                        "last_updated": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/inventory/{item_id}": {
+            "get": {
+                "summary": "Check stock for specific item",
+                "description": "Check stock availability for a specific item by its ID",
+                "operationId": "check_stock_inventory__item_id__get",
+                "parameters": [
+                    {
+                        "name": "item_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "title": "Item Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockCheckResponse"
+                                },
+                                "example": {
+                                    "item_id": "string",
+                                    "available": true,
+                                    "stock_quantity": 0,
+                                    "location": {},
+                                    "estimated_delivery_days": {}
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                },
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "loc": [
+                                                {}
+                                            ],
+                                            "msg": "string",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/inventory/category/{category}": {
+            "get": {
+                "summary": "Get items by category",
+                "description": "Retrieve all items belonging to a specific category",
+                "operationId": "get_items_by_category_inventory_category__category__get",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "title": "Category",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get Items By Category Inventory Category  Category  Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InventoryItem"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "item_id": "string",
+                                        "name": "string",
+                                        "category": "string",
+                                        "stock_quantity": 0,
+                                        "location": "string",
+                                        "min_stock_level": 0,
+                                        "unit_price": 0,
+                                        "supplier": "string",
+                                        "last_updated": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                },
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "loc": [
+                                                {}
+                                            ],
+                                            "msg": "string",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/inventory/low-stock": {
+            "get": {
+                "summary": "Get items with low stock",
+                "description": "Retrieve all items that are at or below their minimum stock level",
+                "operationId": "get_low_stock_items_inventory_low_stock_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get Low Stock Items Inventory Low Stock Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InventoryItem"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "item_id": "string",
+                                        "name": "string",
+                                        "category": "string",
+                                        "stock_quantity": 0,
+                                        "location": "string",
+                                        "min_stock_level": 0,
+                                        "unit_price": 0,
+                                        "supplier": "string",
+                                        "last_updated": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/inventory/reserve": {
+            "post": {
+                "summary": "Reserve items for maintenance",
+                "description": "Reserve inventory items for scheduled maintenance work",
+                "operationId": "reserve_items_inventory_reserve_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReservationRequest"
+                            },
+                            "example": {
+                                "item_id": "string",
+                                "quantity": 0,
+                                "requested_by": "string",
+                                "work_order": "string"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReservationResponse"
+                                },
+                                "example": {
+                                    "reservation_id": "string",
+                                    "item_id": "string",
+                                    "quantity": 0,
+                                    "status": "string",
+                                    "reserved_until": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                },
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "loc": [
+                                                {}
+                                            ],
+                                            "msg": "string",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reservations": {
+            "get": {
+                "summary": "Get all active reservations",
+                "description": "Retrieve all active item reservations",
+                "operationId": "get_reservations_reservations_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Get Reservations Reservations Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReservationResponse"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "reservation_id": "string",
+                                        "item_id": "string",
+                                        "quantity": 0,
+                                        "status": "string",
+                                        "reserved_until": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reservations/{reservation_id}": {
+            "get": {
+                "summary": "Get specific reservation",
+                "description": "Retrieve details of a specific reservation",
+                "operationId": "get_reservation_reservations__reservation_id__get",
+                "parameters": [
+                    {
+                        "name": "reservation_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "title": "Reservation Id",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReservationResponse"
+                                },
+                                "example": {
+                                    "reservation_id": "string",
+                                    "item_id": "string",
+                                    "quantity": 0,
+                                    "status": "string",
+                                    "reserved_until": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                },
+                                "example": {
+                                    "detail": [
+                                        {
+                                            "loc": [
+                                                {}
+                                            ],
+                                            "msg": "string",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "title": "HTTPValidationError",
+                "type": "object",
+                "properties": {
+                    "detail": {
+                        "title": "Detail",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        }
+                    }
+                }
+            },
+            "InventoryItem": {
+                "title": "InventoryItem",
+                "required": [
+                    "item_id",
+                    "name",
+                    "category",
+                    "stock_quantity",
+                    "location",
+                    "min_stock_level",
+                    "unit_price",
+                    "supplier",
+                    "last_updated"
+                ],
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "category": {
+                        "title": "Category",
+                        "type": "string"
+                    },
+                    "stock_quantity": {
+                        "title": "Stock Quantity",
+                        "type": "integer"
+                    },
+                    "location": {
+                        "title": "Location",
+                        "type": "string"
+                    },
+                    "min_stock_level": {
+                        "title": "Min Stock Level",
+                        "type": "integer"
+                    },
+                    "unit_price": {
+                        "title": "Unit Price",
+                        "type": "number"
+                    },
+                    "supplier": {
+                        "title": "Supplier",
+                        "type": "string"
+                    },
+                    "last_updated": {
+                        "title": "Last Updated",
+                        "type": "string"
+                    }
+                }
+            },
+            "ReservationRequest": {
+                "title": "ReservationRequest",
+                "required": [
+                    "item_id",
+                    "quantity",
+                    "requested_by",
+                    "work_order"
+                ],
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "title": "Quantity",
+                        "type": "integer"
+                    },
+                    "requested_by": {
+                        "title": "Requested By",
+                        "type": "string"
+                    },
+                    "work_order": {
+                        "title": "Work Order",
+                        "type": "string"
+                    }
+                }
+            },
+            "ReservationResponse": {
+                "title": "ReservationResponse",
+                "required": [
+                    "reservation_id",
+                    "item_id",
+                    "quantity",
+                    "status",
+                    "reserved_until"
+                ],
+                "type": "object",
+                "properties": {
+                    "reservation_id": {
+                        "title": "Reservation Id",
+                        "type": "string"
+                    },
+                    "item_id": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "title": "Quantity",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "title": "Status",
+                        "type": "string"
+                    },
+                    "reserved_until": {
+                        "title": "Reserved Until",
+                        "type": "string"
+                    }
+                }
+            },
+            "StockCheckResponse": {
+                "title": "StockCheckResponse",
+                "required": [
+                    "item_id",
+                    "available",
+                    "stock_quantity"
+                ],
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "title": "Item Id",
+                        "type": "string"
+                    },
+                    "available": {
+                        "title": "Available",
+                        "type": "boolean"
+                    },
+                    "stock_quantity": {
+                        "title": "Stock Quantity",
+                        "type": "integer"
+                    },
+                    "location": {
+                        "title": "Location",
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "estimated_delivery_days": {
+                        "title": "Estimated Delivery Days",
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                }
+            },
+            "ValidationError": {
+                "title": "ValidationError",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "title": "Location",
+                        "type": "array",
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    },
+                    "msg": {
+                        "title": "Message",
+                        "type": "string"
+                    },
+                    "type": {
+                        "title": "Error Type",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}
